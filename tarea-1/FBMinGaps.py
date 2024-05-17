@@ -9,13 +9,23 @@
 # el algoritmo calculara el valor de los gaps generados y lo retornara
 # hacia los nodos que lo preceden
 
-def min_gaps_rec(L, S, pila):
-    # Largo del arreglo de ladrillos
-    n = len(S)
+def calculate_gaps(L, pila):
     # la suma de los gaps totales
     gaps = 0
     # largo total de los ladrillos dispuestos
     current_length = 0
+    for e in pila:
+        if (current_length + int(e) < L):
+            current_length += int(e)
+        if (current_length + int(e) >= L):
+            gaps += (L - current_length)**2
+            current_length = 0
+
+    return gaps
+    
+def min_gaps_rec(L, S, pila):
+    # Largo del arreglo de ladrillos
+    n = len(S)
     # Arreglo de resultados obtenidos
     results = []
 
@@ -24,14 +34,7 @@ def min_gaps_rec(L, S, pila):
     # La ultima hoja generada por el arbol se encarga
     # de calcular las gaps del orden generado
     if (len(S) == 0):
-        for e in pila:
-            if (current_length + int(e) < L):
-                current_length += int(e)
-            if (current_length + int(e) >= L):
-                gaps += (L - current_length)**2
-                current_length = 0
-        
-        return gaps
+        return calculate_gaps(L, pila)
 
     # Los nodos del arbol generan todas las combinaciones
     # posibles al mover los elementos de S hacia la Pila
@@ -44,9 +47,6 @@ def min_gaps_rec(L, S, pila):
             new_pila.append(brick)
             result = min_gaps_rec(L, new_s, new_pila)        
             results.append(result)
-    
-    if (len(pila) == 0):
-        print('Resultado: ' + str(min(results)))
     
     return min(results)
 
@@ -67,7 +67,7 @@ while True:
         S = values[:]
 
         # Imprimir el resultado
-        min_gaps_rec(L, S, [])
+        print(min_gaps_rec(L, S, []))
 
     except EOFError:
         break
