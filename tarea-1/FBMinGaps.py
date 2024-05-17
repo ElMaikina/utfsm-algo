@@ -9,6 +9,7 @@
 # el algoritmo calculara el valor de los gaps generados y lo retornara
 # hacia los nodos que lo preceden
 
+# Calcula los gaps para el arreglo de ladrillos
 def calculate_gaps(L, pila):
     # la suma de los gaps totales
     gaps = 0
@@ -28,8 +29,6 @@ def min_gaps_rec(L, S, pila):
     n = len(S)
     # Arreglo de resultados obtenidos
     results = []
-
-    # Calcula los gaps para el arreglo de ladrillos
 
     # La ultima hoja generada por el arbol se encarga
     # de calcular las gaps del orden generado
