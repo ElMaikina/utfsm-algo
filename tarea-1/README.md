@@ -20,7 +20,7 @@ pasos a seguir son los siguientes:
 make runfb
 ```
 
-- Ejecutar el comando a continuacion para correr el algoritmo  de _Programación Dinámica_
+- Ejecutar el comando a continuacion para correr el algoritmo de _Programación Dinámica_
 
 ```
 make rundp
