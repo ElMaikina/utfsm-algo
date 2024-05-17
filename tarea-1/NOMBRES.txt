@@ -1,0 +1,9 @@
+Integrantes:
+
+Alvaro Opazo Saavedra
+201973550-0
+Encargado de hacer la parte de programación dinámica
+
+Mguel Soto
+javiera aaaa nomelose wakaka
+Encagrgados de hacer la parte de fuerza bruta
