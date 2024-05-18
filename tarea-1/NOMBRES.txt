@@ -1,0 +1,10 @@
+# Integrantes
+
+## Miguel Soto 201973623-K
+Encargado de hacer la parte de _Fuerza Bruta Recursiva_
+
+## Javiera Bobadilla 202173584-4
+Encargado de hacer la parte de _Fuerza Bruta Recursiva_
+
+## Alvaro Opazo 201973550-0
+Encargado de hacer la parte de _Programacion Dinámica_
