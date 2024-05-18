@@ -1,53 +1,45 @@
-# La idea de este algoritmo recursivo es generear todas las
-# posibles combinaciones de ladrillos y recursivamente obtener
-# el menor valor desde los nodos finales
+from itertools import combinations
 
-# El algoritmo ira vaciando el arreglo S de ladrillos y generara
-# las combinaciones en la variable Pila
+def min_gaps_squared_brute_force(L, S):
 
-# Una vez se llega al nodo final (osea que S se vacia completamente)
-# el algoritmo calculara el valor de los gaps generados y lo retornara
-# hacia los nodos que lo preceden
+    # Calcula los gaps para el arreglo de ladrillos
+    def calculate_gap_squared(parts):
+        total_gap_squared = 0
+        for part in parts:
+            length_sum = sum(part)
+            if length_sum <= L:
+                gap = L - length_sum
+                total_gap_squared += gap ** 2
+            else:
+                return float('inf')  # Invalid partition
+        return total_gap_squared
 
-# Calcula los gaps para el arreglo de ladrillos
-def calculate_gaps(L, pila):
-    # la suma de los gaps totales
-    gaps = 0
-    # largo total de los ladrillos dispuestos
-    current_length = 0
-    for e in pila:
-        if (current_length + int(e) < L):
-            current_length += int(e)
-        if (current_length + int(e) >= L):
-            gaps += (L - current_length)**2
-            current_length = 0
+    # Genera las particiones con los ladrillos dispuestos
+    def generate_partitions(arr):
+        if len(arr) == 1:
+            return [[arr]]
+        
+        result = []
+        for i in range(1, len(arr) + 1):
+            for c in combinations(range(1, len(arr)), i-1):
+                start = 0
+                partition = []
+                for end in c:
+                    partition.append(arr[start:end])
+                    start = end
+                partition.append(arr[start:])
+                result.append(partition)
+        return result
 
-    return gaps
-    
-def min_gaps_rec(L, S, pila):
-    # Largo del arreglo de ladrillos
-    n = len(S)
-    # Arreglo de resultados obtenidos
-    results = []
+    partitions = generate_partitions(S)
+    min_gap_squared = float('inf')
 
-    # La ultima hoja generada por el arbol se encarga
-    # de calcular las gaps del orden generado
-    if (len(S) == 0):
-        return calculate_gaps(L, pila)
+    # Llama recursivamente a la funcion para generar todos los ordenes
+    for parts in partitions:
+        gap_squared = calculate_gap_squared(parts)
+        min_gap_squared = min(min_gap_squared, gap_squared)
 
-    # Los nodos del arbol generan todas las combinaciones
-    # posibles al mover los elementos de S hacia la Pila
-    if (len(S) > 0):
-        for i in range(0, n):
-            brick = S[i]
-            new_s = S.copy()
-            new_s.pop(i)
-            new_pila = pila.copy()
-            new_pila.append(brick)
-            result = min_gaps_rec(L, new_s, new_pila)        
-            results.append(result)
-    
-    return min(results)
+    return min_gap_squared
 
 while True:
     try:
@@ -66,7 +58,7 @@ while True:
         S = values[:]
 
         # Imprimir el resultado
-        print(min_gaps_rec(L, S, []))
+        print(min_gaps_squared_brute_force(L, S))
 
     except EOFError:
         break
