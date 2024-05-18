@@ -3,19 +3,21 @@ from itertools import combinations
 def min_gaps_squared_brute_force(L, S):
 
     # Calcula los gaps para el arreglo de ladrillos
-    def calculate_gap_squared(parts):
+    def calculate_gaps(parts):
         total_gap_squared = 0
+        # Suma ladrillo por ladrillo hasta ser mas largo que el maximo
         for part in parts:
             length_sum = sum(part)
             if length_sum <= L:
                 gap = L - length_sum
+                # Se suma la diferencia al cuadrado
                 total_gap_squared += gap ** 2
             else:
                 return float('inf')  # Invalid partition
         return total_gap_squared
 
     # Genera las particiones con los ladrillos dispuestos
-    def generate_partitions(arr):
+    def generate_combinations(arr):
         if len(arr) == 1:
             return [[arr]]
         
@@ -31,12 +33,12 @@ def min_gaps_squared_brute_force(L, S):
                 result.append(partition)
         return result
 
-    partitions = generate_partitions(S)
+    partitions = generate_combinations(S)
     min_gap_squared = float('inf')
 
     # Llama recursivamente a la funcion para generar todos los ordenes
     for parts in partitions:
-        gap_squared = calculate_gap_squared(parts)
+        gap_squared = calculate_gaps(parts)
         min_gap_squared = min(min_gap_squared, gap_squared)
 
     return min_gap_squared
