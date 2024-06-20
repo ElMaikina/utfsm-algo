@@ -1,9 +1,10 @@
-Integrantes:
+# Integrantes
 
-Alvaro Opazo Saavedra
-201973550-0
-Encargado de hacer la parte de programación dinámica
+## Miguel Soto 201973623-K
+Encargado de hacer la parte de _Fuerza Bruta Recursiva_
 
-Mguel Soto
-javiera aaaa nomelose wakaka
-Encagrgados de hacer la parte de fuerza bruta
+## Javiera Bobadilla 202173584-4
+Encargado de hacer la parte de _Fuerza Bruta Recursiva_
+
+## Alvaro Opazo 201973550-0
+Encargado de hacer la parte de _Programacion Dinámica_
