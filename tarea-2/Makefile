@@ -1,2 +1,2 @@
 all:
-	python tarea2.py < input.txt
+	python closestStars.py < input.txt
