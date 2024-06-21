@@ -1,6 +1,6 @@
 from itertools import combinations
 
-def min_gaps_squared_brute_force(L, S):
+def min_gaps_fb(L, S):
 
     # Calcula los gaps para el arreglo de ladrillos
     def calculate_gaps(parts):
@@ -60,7 +60,7 @@ while True:
         S = values[:]
 
         # Imprimir el resultado
-        print(min_gaps_squared_brute_force(L, S))
+        print(min_gaps_fb(L, S))
 
     except EOFError:
         break
